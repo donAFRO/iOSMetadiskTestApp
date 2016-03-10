@@ -1,0 +1,507 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07BA2E031C921939003E5785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BA2E021C921939003E5785 /* AppDelegate.swift */; };
+		07BA2E051C921939003E5785 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BA2E041C921939003E5785 /* ViewController.swift */; };
+		07BA2E081C921939003E5785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BA2E061C921939003E5785 /* Main.storyboard */; };
+		07BA2E0A1C921939003E5785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07BA2E091C921939003E5785 /* Assets.xcassets */; };
+		07BA2E0D1C921939003E5785 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BA2E0B1C921939003E5785 /* LaunchScreen.storyboard */; };
+		07BA2E181C921939003E5785 /* MetadiskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BA2E171C921939003E5785 /* MetadiskTests.swift */; };
+		07BA2E231C921939003E5785 /* MetadiskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BA2E221C921939003E5785 /* MetadiskUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		07BA2E141C921939003E5785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07BA2DF71C921938003E5785 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07BA2DFE1C921939003E5785;
+			remoteInfo = Metadisk;
+		};
+		07BA2E1F1C921939003E5785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07BA2DF71C921938003E5785 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07BA2DFE1C921939003E5785;
+			remoteInfo = Metadisk;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		07BA2DFF1C921939003E5785 /* Metadisk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Metadisk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		07BA2E021C921939003E5785 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		07BA2E041C921939003E5785 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		07BA2E071C921939003E5785 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		07BA2E091C921939003E5785 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		07BA2E0C1C921939003E5785 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		07BA2E0E1C921939003E5785 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07BA2E131C921939003E5785 /* MetadiskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetadiskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07BA2E171C921939003E5785 /* MetadiskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadiskTests.swift; sourceTree = "<group>"; };
+		07BA2E191C921939003E5785 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07BA2E1E1C921939003E5785 /* MetadiskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetadiskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07BA2E221C921939003E5785 /* MetadiskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadiskUITests.swift; sourceTree = "<group>"; };
+		07BA2E241C921939003E5785 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		07BA2DFC1C921939003E5785 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07BA2E101C921939003E5785 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07BA2E1B1C921939003E5785 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07BA2DF61C921938003E5785 = {
+			isa = PBXGroup;
+			children = (
+				07BA2E011C921939003E5785 /* Metadisk */,
+				07BA2E161C921939003E5785 /* MetadiskTests */,
+				07BA2E211C921939003E5785 /* MetadiskUITests */,
+				07BA2E001C921939003E5785 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		07BA2E001C921939003E5785 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07BA2DFF1C921939003E5785 /* Metadisk.app */,
+				07BA2E131C921939003E5785 /* MetadiskTests.xctest */,
+				07BA2E1E1C921939003E5785 /* MetadiskUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		07BA2E011C921939003E5785 /* Metadisk */ = {
+			isa = PBXGroup;
+			children = (
+				07BA2E021C921939003E5785 /* AppDelegate.swift */,
+				07BA2E041C921939003E5785 /* ViewController.swift */,
+				07BA2E061C921939003E5785 /* Main.storyboard */,
+				07BA2E091C921939003E5785 /* Assets.xcassets */,
+				07BA2E0B1C921939003E5785 /* LaunchScreen.storyboard */,
+				07BA2E0E1C921939003E5785 /* Info.plist */,
+			);
+			path = Metadisk;
+			sourceTree = "<group>";
+		};
+		07BA2E161C921939003E5785 /* MetadiskTests */ = {
+			isa = PBXGroup;
+			children = (
+				07BA2E171C921939003E5785 /* MetadiskTests.swift */,
+				07BA2E191C921939003E5785 /* Info.plist */,
+			);
+			path = MetadiskTests;
+			sourceTree = "<group>";
+		};
+		07BA2E211C921939003E5785 /* MetadiskUITests */ = {
+			isa = PBXGroup;
+			children = (
+				07BA2E221C921939003E5785 /* MetadiskUITests.swift */,
+				07BA2E241C921939003E5785 /* Info.plist */,
+			);
+			path = MetadiskUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		07BA2DFE1C921939003E5785 /* Metadisk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07BA2E271C921939003E5785 /* Build configuration list for PBXNativeTarget "Metadisk" */;
+			buildPhases = (
+				07BA2DFB1C921939003E5785 /* Sources */,
+				07BA2DFC1C921939003E5785 /* Frameworks */,
+				07BA2DFD1C921939003E5785 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Metadisk;
+			productName = Metadisk;
+			productReference = 07BA2DFF1C921939003E5785 /* Metadisk.app */;
+			productType = "com.apple.product-type.application";
+		};
+		07BA2E121C921939003E5785 /* MetadiskTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07BA2E2A1C921939003E5785 /* Build configuration list for PBXNativeTarget "MetadiskTests" */;
+			buildPhases = (
+				07BA2E0F1C921939003E5785 /* Sources */,
+				07BA2E101C921939003E5785 /* Frameworks */,
+				07BA2E111C921939003E5785 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07BA2E151C921939003E5785 /* PBXTargetDependency */,
+			);
+			name = MetadiskTests;
+			productName = MetadiskTests;
+			productReference = 07BA2E131C921939003E5785 /* MetadiskTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		07BA2E1D1C921939003E5785 /* MetadiskUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07BA2E2D1C921939003E5785 /* Build configuration list for PBXNativeTarget "MetadiskUITests" */;
+			buildPhases = (
+				07BA2E1A1C921939003E5785 /* Sources */,
+				07BA2E1B1C921939003E5785 /* Frameworks */,
+				07BA2E1C1C921939003E5785 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07BA2E201C921939003E5785 /* PBXTargetDependency */,
+			);
+			name = MetadiskUITests;
+			productName = MetadiskUITests;
+			productReference = 07BA2E1E1C921939003E5785 /* MetadiskUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		07BA2DF71C921938003E5785 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = donAFRO;
+				TargetAttributes = {
+					07BA2DFE1C921939003E5785 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					07BA2E121C921939003E5785 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 07BA2DFE1C921939003E5785;
+					};
+					07BA2E1D1C921939003E5785 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 07BA2DFE1C921939003E5785;
+					};
+				};
+			};
+			buildConfigurationList = 07BA2DFA1C921938003E5785 /* Build configuration list for PBXProject "Metadisk" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 07BA2DF61C921938003E5785;
+			productRefGroup = 07BA2E001C921939003E5785 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				07BA2DFE1C921939003E5785 /* Metadisk */,
+				07BA2E121C921939003E5785 /* MetadiskTests */,
+				07BA2E1D1C921939003E5785 /* MetadiskUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		07BA2DFD1C921939003E5785 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07BA2E0D1C921939003E5785 /* LaunchScreen.storyboard in Resources */,
+				07BA2E0A1C921939003E5785 /* Assets.xcassets in Resources */,
+				07BA2E081C921939003E5785 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07BA2E111C921939003E5785 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07BA2E1C1C921939003E5785 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		07BA2DFB1C921939003E5785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07BA2E051C921939003E5785 /* ViewController.swift in Sources */,
+				07BA2E031C921939003E5785 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07BA2E0F1C921939003E5785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07BA2E181C921939003E5785 /* MetadiskTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07BA2E1A1C921939003E5785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07BA2E231C921939003E5785 /* MetadiskUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		07BA2E151C921939003E5785 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07BA2DFE1C921939003E5785 /* Metadisk */;
+			targetProxy = 07BA2E141C921939003E5785 /* PBXContainerItemProxy */;
+		};
+		07BA2E201C921939003E5785 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07BA2DFE1C921939003E5785 /* Metadisk */;
+			targetProxy = 07BA2E1F1C921939003E5785 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		07BA2E061C921939003E5785 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07BA2E071C921939003E5785 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		07BA2E0B1C921939003E5785 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07BA2E0C1C921939003E5785 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		07BA2E251C921939003E5785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		07BA2E261C921939003E5785 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		07BA2E281C921939003E5785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Metadisk/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = donAFRO.Metadisk;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		07BA2E291C921939003E5785 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Metadisk/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = donAFRO.Metadisk;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		07BA2E2B1C921939003E5785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MetadiskTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = donAFRO.MetadiskTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Metadisk.app/Metadisk";
+			};
+			name = Debug;
+		};
+		07BA2E2C1C921939003E5785 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MetadiskTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = donAFRO.MetadiskTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Metadisk.app/Metadisk";
+			};
+			name = Release;
+		};
+		07BA2E2E1C921939003E5785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MetadiskUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = donAFRO.MetadiskUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Metadisk;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		07BA2E2F1C921939003E5785 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MetadiskUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = donAFRO.MetadiskUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Metadisk;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		07BA2DFA1C921938003E5785 /* Build configuration list for PBXProject "Metadisk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07BA2E251C921939003E5785 /* Debug */,
+				07BA2E261C921939003E5785 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07BA2E271C921939003E5785 /* Build configuration list for PBXNativeTarget "Metadisk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07BA2E281C921939003E5785 /* Debug */,
+				07BA2E291C921939003E5785 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		07BA2E2A1C921939003E5785 /* Build configuration list for PBXNativeTarget "MetadiskTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07BA2E2B1C921939003E5785 /* Debug */,
+				07BA2E2C1C921939003E5785 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		07BA2E2D1C921939003E5785 /* Build configuration list for PBXNativeTarget "MetadiskUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07BA2E2E1C921939003E5785 /* Debug */,
+				07BA2E2F1C921939003E5785 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 07BA2DF71C921938003E5785 /* Project object */;
+}
