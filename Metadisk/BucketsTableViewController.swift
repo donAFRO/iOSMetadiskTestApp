@@ -31,6 +31,7 @@ class BucketsTableViewController: UITableViewController {
         let backgroundView = UIView(frame: CGRectZero)
         tableView.tableFooterView = backgroundView
         
+        createNoBucketsLabel()
         
         downloadBucketList()
         
@@ -57,6 +58,29 @@ class BucketsTableViewController: UITableViewController {
         return cell
     }
 
+    
+    
+    
+    
+    //MARK: - Prepare for showing bucket detail
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        self.performSegueWithIdentifier("showDetail", sender: indexPath)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "showDetail"){
+            let controller = (segue.destinationViewController as! DetailViewController)
+            let row = sender!.row //we know that sender is an NSIndexPath here.
+            let selectedBucket = buckets[row]
+            controller.bucket = selectedBucket
+            
+        }
+        self.tabBarController?.tabBar.hidden = true
+    }
+    
+    
+    
     
     
     
@@ -111,11 +135,11 @@ class BucketsTableViewController: UITableViewController {
     }
     
     
+    
+    
 
     //MARK: - Download
     func downloadBucketList() {
-        
-        
         
         Alamofire.request(.GET, "https://api.metadisk.org/buckets", headers: General.headers).responseJSON
             { response in switch response.result {
@@ -140,6 +164,12 @@ class BucketsTableViewController: UITableViewController {
                 }
                 self.refreshControl?.endRefreshing()
                 self.tableView.reloadData()
+
+                if self.buckets.count == 0 {
+                    self.noBucketsLabel.hidden = false
+                } else {
+                    self.noBucketsLabel.hidden = true
+                }
                 
             case .Failure(let error):
                 print("Request failed with error: \(error)")
@@ -149,6 +179,23 @@ class BucketsTableViewController: UITableViewController {
         }
     }
     
+
+
+    //MARK: - Create info label
+    
+    var noBucketsLabel = UILabel()
+    
+    func createNoBucketsLabel() {
+        noBucketsLabel = UILabel(frame: CGRectMake(self.view.frame.size.width/2, 30, 300, 160))
+        noBucketsLabel.hidden = true
+        noBucketsLabel.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3)
+        noBucketsLabel.textAlignment = NSTextAlignment.Center
+        noBucketsLabel.numberOfLines = 0
+        noBucketsLabel.text = "You dont have any buckets, add a new Bucket with the + symbol"
+        noBucketsLabel.textColor = UIColor(red: 60.0/255.0, green: 60.0/255.0, blue: 60.0/255.0, alpha: 1.0)
+        noBucketsLabel.font = UIFont(name: "HelveticaNeue", size: 18)
+        self.view.addSubview(noBucketsLabel)
+    }
     
     
     

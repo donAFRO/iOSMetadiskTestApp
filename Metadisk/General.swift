@@ -11,8 +11,8 @@ import Foundation
 
 public class General {
 
-    static let user = "mazeltov3@sharklasers.com"
-    static let password = "mazeltov3@sharklasers.com"
+    static var user = "mazeltov3@sharklasers.com"
+    static var password = "mazeltov3@sharklasers.com"
     
     static let credentialData = "\(user):\(password)".dataUsingEncoding(NSUTF8StringEncoding)!
     static let base64Credentials = credentialData.base64EncodedStringWithOptions([])
