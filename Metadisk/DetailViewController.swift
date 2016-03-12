@@ -18,9 +18,22 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.title = bucket!.name
         
         
+        
+        loadingLabel = UILabel(frame: CGRectMake(self.view.frame.size.width/2, 30, 300, 100))
+        loadingLabel.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2.5)
+        loadingLabel.textAlignment = NSTextAlignment.Center
+        loadingLabel.text = "Uploading Photo"
+        loadingLabel.textColor = UIColor(red: 60.0/255.0, green: 60.0/255.0, blue: 60.0/255.0, alpha: 1.0)
+        loadingLabel.font = UIFont(name: "HelveticaNeue", size: 18)
+        self.view.addSubview(loadingLabel)
+        
+        showloadingLabel(false)
+        
+        
+        downloadImages()
+        
         imagePicker.delegate = self
         
-        tempLabel.text = "name: \(bucket!.name)"
     }
 
 
@@ -41,29 +54,105 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
 
     
     
+    //MARK: - Download stuff
+    
+    var files = [String]()
+    
+    func downloadImages() {
+        Alamofire.request(.GET, "https://api.metadisk.org/buckets/\(self.bucket!.id)/files", headers: General.headers).responseJSON
+            { response in switch response.result {
+            case .Success(let JSON):
+                print("Downloaded stuff in bucket: \(JSON)")
+                
+                self.files.removeAll()
+                
+                let response = JSON as! NSArray
+                
+                for res in response {
+                    let hash = res.objectForKey("hash") as! String
+                    let filename = res.objectForKey("filename") as! String
+                    
+                    self.files.append(hash)
+                    self.files.append(filename)
+
+                    
+                }
+                
+                self.tempLabel.text = "Pocet filu: \(self.files.count/2)"
+                
+            case .Failure(let error):
+                print("Request failed with error: \(error)")
+                
+                }
+                
+        }
+    }
+    
+    
+    
     
     //MARK: - Upload image
-    func uploadImageToMetadisk(image: UIImage) {
-       print("bucketID: \(self.bucket!.id)")
-        let imageData: NSData = UIImagePNGRepresentation(image)!
+    
+    func getToken(image: UIImage) {
+        let parameters = [
+            "operation": "PUSH"
+        ]
+        
+        Alamofire.request(.POST, "https://api.metadisk.org/buckets/\(self.bucket!.id)/tokens",headers: General.headers, parameters: parameters, encoding: .JSON).responseJSON {
+            response in switch response.result {
+                case .Success(let JSON):
+//                    print("response: \(JSON)")
+                    let res = JSON
+                    
+                    let token = res.objectForKey("token") as! String
+                
+                    self.uploadImageToMetadisk(image, token: token)
+                
+                case .Failure(let error):
+                    print("Error: \(error)")
        
-        Alamofire.upload(
-            .POST,
-            "https://api.metadisk.org/buckets/\(self.bucket!.id)/files", headers: General.headers,
+            
+            }
+        }
+    }
+    
+    
+    
+    
+    func uploadImageToMetadisk(image: UIImage, token: String) {
+        
+        
+        showloadingLabel(true)
+        
+        let imageData: NSData = UIImagePNGRepresentation(image)!
+        
+        let imageSize = imageData.length
+        
+        let modifiedHeader = ["Authorization": "Basic \(General.base64Credentials)", "x-token": "\(token)", "x-Filesize": "\(imageSize)"]
+        print("modifHea: \(modifiedHeader)")
+        
+        
+        Alamofire.upload(.PUT, "https://api.metadisk.org/buckets/\(self.bucket!.id)/files", headers: modifiedHeader,
             multipartFormData: { multipartFormData in
-                multipartFormData.appendBodyPart(data: imageData, name: "test1")
+                multipartFormData.appendBodyPart(data: imageData, name: "test6", fileName: "test6.png", mimeType: "image/png")
             },
             encodingCompletion: { encodingResult in
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseJSON { JSON in
+                        print("--------------")
                         print(JSON)
+                        self.showloadingLabel(false)
+
                     }
                 case .Failure(let encodingError):
+                    print("!!!!!!!!!!!!!!!!!!!")
                     print(encodingError)
+                    self.showloadingLabel(false)
                 }
             }
         )
+        
         
         
     }
@@ -72,9 +161,23 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     
     
+    var loadingLabel = UILabel()
     
-    
-    
+    func showloadingLabel(show: Bool) {
+        if show {
+            
+            loadingLabel.hidden = false
+            loadingLabel.alpha = 1
+            UIView.animateWithDuration(0.6, delay: 0.3, options:[.Repeat, .Autoreverse], animations: { _ in
+                self.loadingLabel.alpha = 0
+                }, completion: nil)
+        }
+        else {
+            loadingLabel.hidden = true
+            loadingLabel.alpha = 0
+            loadingLabel.layer.removeAllAnimations()
+        }
+    }
     
     
     
@@ -94,7 +197,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
             print("Handle Ok Logic here")
             
-            self.uploadImageToMetadisk(pickedImage)
+            self.getToken(pickedImage)
         }))
         
         let imageView = UIImageView(frame: CGRectMake(220, 10, 40, 40))

@@ -77,7 +77,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if textField.tag == 0 {
             if string == "\n" {
-                usernameField.resignFirstResponder()
+                
                 passwordField.becomeFirstResponder()
                 return true
             }
