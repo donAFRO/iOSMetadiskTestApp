@@ -65,12 +65,12 @@ class BucketsTableViewController: UITableViewController {
     //MARK: - Prepare for showing bucket detail
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        self.performSegueWithIdentifier("showDetail", sender: indexPath)
+        self.performSegueWithIdentifier("showCollectionView", sender: indexPath)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "showDetail"){
-            let controller = (segue.destinationViewController as! DetailViewController)
+        if(segue.identifier == "showCollectionView"){
+            let controller = (segue.destinationViewController as! CollectionViewController)
             let row = sender!.row //we know that sender is an NSIndexPath here.
             let selectedBucket = buckets[row]
             controller.bucket = selectedBucket

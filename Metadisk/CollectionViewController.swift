@@ -1,8 +1,8 @@
 //
-//  DetailViewController.swift
+//  CollectionViewController.swift
 //  Metadisk
 //
-//  Created by Jan Potuznik on 11.03.16.
+//  Created by Jan Potuznik on 13.03.16.
 //  Copyright © 2016 donAFRO. All rights reserved.
 //
 
@@ -10,15 +10,26 @@ import UIKit
 import Alamofire
 import MobileCoreServices
 
-class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+
+class CollectionViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    
+    var bucket: Bucket? // current bucket
+    
+    var photoObjects: [NSData]?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
         self.title = bucket!.name
         
+
         
         
+        // create loading label
         loadingLabel = UILabel(frame: CGRectMake(self.view.frame.size.width/2, 30, 300, 100))
         loadingLabel.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2.5)
         loadingLabel.textAlignment = NSTextAlignment.Center
@@ -26,20 +37,54 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         loadingLabel.textColor = UIColor(red: 60.0/255.0, green: 60.0/255.0, blue: 60.0/255.0, alpha: 1.0)
         loadingLabel.font = UIFont(name: "HelveticaNeue", size: 18)
         self.view.addSubview(loadingLabel)
-        
         showloadingLabel(false)
         
         
-        downloadImages()
+        downloadMetaInformation()
         
         imagePicker.delegate = self
         
     }
 
 
-    @IBOutlet weak var tempLabel: UILabel!
+
+    // MARK: UICollectionViewDataSource
+
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+
+
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of items
+        return photos.count
+    }
+
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CollectionViewCell
     
-    var bucket: Bucket?
+        // Configure the cell
+        
+        cell.backgroundColor = UIColor.redColor()
+        
+//        cell.imageView.image = self.photos[1]
+        cell.label.text = "\(indexPath.row)"
+    
+        return cell
+    }
+    
+    
+//    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout!, sizeForItemAtIndexPath indexPath: NSIndexPath!) -> CGSize {
+//        return CGSize(width: 170, height: 300)
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout!, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+//        return sectionInsets
+//    }
+//    
+//    let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+
     
     
     
@@ -48,37 +93,114 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     
     
+
     @IBAction func addNewPhoto(sender: UIBarButtonItem) {
         howToSelectImage()
     }
-
+    
+    
+    
+    
     
     
     //MARK: - Download stuff
     
-    var files = [String]()
+    var photos = [UIImage(named: "storjLabs"), UIImage(named: "IMG_0783")]
     
-    func downloadImages() {
+    
+    func downloadImage(token: String, indexInArray: Int) {
+        
+        let hash = metaArray[indexInArray].hash
+        
+        let modifiedHeader = ["Authorization": "Basic \(General.base64Credentials)", "x-token": "\(token)"]
+        print("modifHea: \(modifiedHeader)")
+        
+        Alamofire.request(.GET, "https://api.metadisk.org/buckets/\(self.bucket!.id)/files/\(hash)", headers: modifiedHeader).responseJSON
+            { response in switch response.result {
+            case .Success(let JSON):
+                print("IMAGE")
+                print(JSON)
+                
+                
+//                let size = JSON.objectForKey("size") as! Int
+                
+                print("Dude")
+                
+            case .Failure(let error):
+                print("Request failed with error: \(error)")
+                
+                }
+                
+        }
+    }
+    
+    
+    //get token for PULL operation
+    func getPullToken(indexInArray: Int) {
+        
+        let parameters = [
+            "operation": "PULL"
+        ]
+        
+        Alamofire.request(.POST, "https://api.metadisk.org/buckets/\(self.bucket!.id)/tokens",headers: General.headers, parameters: parameters, encoding: .JSON).responseJSON {
+            response in switch response.result {
+            case .Success(let JSON):
+                //                    print("response: \(JSON)")
+                
+                let token = JSON.objectForKey("token") as! String
+//                let hash = JSON.objectForKey("hash") as! String
+                
+                print("token: \(token)")
+                
+                self.downloadImage(token, indexInArray: indexInArray)
+                
+            case .Failure(let error):
+                print("Error: \(error)")
+                
+                
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //class that stores metadata in bucket
+    var metaArray = [MetaData]()
+    
+    //Download metadata about stuff that are in this bucket
+    func downloadMetaInformation() {
         Alamofire.request(.GET, "https://api.metadisk.org/buckets/\(self.bucket!.id)/files", headers: General.headers).responseJSON
             { response in switch response.result {
             case .Success(let JSON):
-                print("Downloaded stuff in bucket: \(JSON)")
+                print("METADATA")
+                print(JSON)
                 
-                self.files.removeAll()
+                self.metaArray.removeAll()
                 
                 let response = JSON as! NSArray
                 
                 for res in response {
                     let hash = res.objectForKey("hash") as! String
                     let filename = res.objectForKey("filename") as! String
+                    let id = res.objectForKey("id") as! String
+                    let mimetype = res.objectForKey("mimetype") as! String
+                    let size = res.objectForKey("size") as! Int
                     
-                    self.files.append(hash)
-                    self.files.append(filename)
-
+                    self.metaArray.append(MetaData(fileName: filename, hash: hash, id: id, mimetype: mimetype, size: Int64(size)))
+    
+                    if mimetype.hasSuffix("png") {
+                        self.getPullToken(self.metaArray.count - 1)
+                    }
                     
                 }
                 
-                self.tempLabel.text = "Pocet filu: \(self.files.count/2)"
                 
             case .Failure(let error):
                 print("Request failed with error: \(error)")
@@ -93,6 +215,8 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     //MARK: - Upload image
     
+    
+    //get token for Uploading image
     func getToken(image: UIImage) {
         let parameters = [
             "operation": "PUSH"
@@ -100,18 +224,18 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         Alamofire.request(.POST, "https://api.metadisk.org/buckets/\(self.bucket!.id)/tokens",headers: General.headers, parameters: parameters, encoding: .JSON).responseJSON {
             response in switch response.result {
-                case .Success(let JSON):
-//                    print("response: \(JSON)")
-                    let res = JSON
-                    
-                    let token = res.objectForKey("token") as! String
+            case .Success(let JSON):
+                //                    print("response: \(JSON)")
+                let res = JSON
                 
-                    self.uploadImageToMetadisk(image, token: token)
+                let token = res.objectForKey("token") as! String
                 
-                case .Failure(let error):
-                    print("Error: \(error)")
-       
-            
+                self.uploadImageToMetadisk(image, token: token)
+                
+            case .Failure(let error):
+                print("Error: \(error)")
+                
+                
             }
         }
     }
@@ -144,6 +268,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
                         print(JSON)
                         self.showloadingLabel(false)
 
+                        
                     }
                 case .Failure(let encodingError):
                     print("!!!!!!!!!!!!!!!!!!!")
@@ -161,6 +286,9 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     
     
+    
+    
+    //MARK: - Uploading label
     var loadingLabel = UILabel()
     
     func showloadingLabel(show: Bool) {
@@ -271,5 +399,6 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
 }
 
 
-
+    
+    
 
