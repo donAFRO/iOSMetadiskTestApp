@@ -94,9 +94,9 @@ class CollectionViewController: UICollectionViewController, UIImagePickerControl
         let request = NSMutableURLRequest(URL: NSURL(string:"\(channel)")!)
         request.addValue("token", forHTTPHeaderField: "\(token)")
         request.addValue("hash", forHTTPHeaderField: "\(hash)")
-        let ws = WebSocket(request: request)
+//        let ws = WebSocket(request: request)
         
-        ws.event.pong
+//        ws.event
         
         
     }
