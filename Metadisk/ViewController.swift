@@ -35,7 +35,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func login() {
         if usernameField.text?.characters.count > 0 && passwordField.text?.characters.count > 0 {
             General.user = usernameField.text!
-            General.password = passwordField.text!
+            General.password = "a0de9a6204d75feec798619bb2c299584ebfe4846d40c65ff80bbd6ceb8016d9"
             print("user: \(General.user) pass: \(General.password)")
             
             Alamofire.request(.GET, "https://api.metadisk.org/keys", headers: General.headers).responseString
@@ -58,6 +58,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+
+    
     
     @IBOutlet weak var usernameField: UITextField!
 
@@ -68,8 +70,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func useDemoAccount(sender: UIButton) {
-        usernameField.text = "mazeltov3@sharklasers.com"
-        passwordField.text = "mazeltov3@sharklasers.com"
+        usernameField.text = "mazeltov4@sharklasers.com"
+        passwordField.text = "a0de9a6204d75feec798619bb2c299584ebfe4846d40c65ff80bbd6ceb8016d9"
         login()
     }
     

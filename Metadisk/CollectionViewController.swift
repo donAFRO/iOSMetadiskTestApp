@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import MobileCoreServices
+import SwiftWebSocket
 
 
 
@@ -22,9 +23,9 @@ class CollectionViewController: UICollectionViewController, UIImagePickerControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
         self.title = bucket!.name
+        
+        
         
 
         
@@ -68,36 +69,37 @@ class CollectionViewController: UICollectionViewController, UIImagePickerControl
         
         cell.backgroundColor = UIColor.redColor()
         
-//        cell.imageView.image = self.photos[1]
+        cell.imageView.image = self.photos[1]
         cell.label.text = "\(indexPath.row)"
     
         return cell
     }
     
     
-//    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout!, sizeForItemAtIndexPath indexPath: NSIndexPath!) -> CGSize {
-//        return CGSize(width: 170, height: 300)
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: UICollectionViewLayout!, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-//        return sectionInsets
-//    }
-//    
-//    let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
 
-    
-    
-    
-    
-    
-    
-    
     
 
     @IBAction func addNewPhoto(sender: UIBarButtonItem) {
         howToSelectImage()
+        
     }
     
+    
+    
+    
+    
+    //MARK: - Websocket
+    
+    func connectToWebSocket(channel: String, token: String, hash: String){
+        let request = NSMutableURLRequest(URL: NSURL(string:"\(channel)")!)
+        request.addValue("token", forHTTPHeaderField: "\(token)")
+        request.addValue("hash", forHTTPHeaderField: "\(hash)")
+        let ws = WebSocket(request: request)
+        
+        ws.event.pong
+        
+        
+    }
     
     
     
@@ -122,9 +124,18 @@ class CollectionViewController: UICollectionViewController, UIImagePickerControl
                 print(JSON)
                 
                 
-//                let size = JSON.objectForKey("size") as! Int
+                let response = JSON as! NSArray
                 
-                print("Dude")
+                for res in response {
+                    let channel = res.objectForKey("channel") as! String
+                    
+                    let hash = res.objectForKey("hash") as! String
+                    let token = res.objectForKey("token") as! String
+                    
+                    self.connectToWebSocket(channel, token: token, hash: hash)
+
+                }
+                
                 
             case .Failure(let error):
                 print("Request failed with error: \(error)")
@@ -132,6 +143,11 @@ class CollectionViewController: UICollectionViewController, UIImagePickerControl
                 }
                 
         }
+    }
+    
+    //start download
+    func startDownloadViaWebSocket(channel: String, hash: String, operation: String, token: String) {
+       
     }
     
     
@@ -189,11 +205,11 @@ class CollectionViewController: UICollectionViewController, UIImagePickerControl
                 for res in response {
                     let hash = res.objectForKey("hash") as! String
                     let filename = res.objectForKey("filename") as! String
-                    let id = res.objectForKey("id") as! String
+                    
                     let mimetype = res.objectForKey("mimetype") as! String
                     let size = res.objectForKey("size") as! Int
                     
-                    self.metaArray.append(MetaData(fileName: filename, hash: hash, id: id, mimetype: mimetype, size: Int64(size)))
+                    self.metaArray.append(MetaData(fileName: filename, hash: hash, mimetype: mimetype, size: Int64(size)))
     
                     if mimetype.hasSuffix("png") {
                         self.getPullToken(self.metaArray.count - 1)
