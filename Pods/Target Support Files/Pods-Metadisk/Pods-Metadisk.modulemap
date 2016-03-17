@@ -1,0 +1,6 @@
+framework module Pods_Metadisk {
+  umbrella header "Pods-Metadisk-umbrella.h"
+
+  export *
+  module * { export * }
+}
